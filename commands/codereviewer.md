@@ -1,11 +1,25 @@
 ---
 description: LLM-powered code review against project spec and changelog
-allowed-tools: [Read, Glob, Grep, Bash]
+allowed-tools: [Read, Glob, Grep, Bash, Agent, EnterPlanMode]
 ---
 
 # Code Reviewer
 
 Perform a thorough code review of the latest development phase, evaluated against the project's specification and recent development history.
+
+## Execution Strategy
+
+**Switch to plan mode first.** Before reading any files, enter plan mode to outline your review approach. This allows the user to confirm the scope and strategy before the full review begins.
+
+**Use parallel agents for independent review tracks.** Once the plan is approved, launch multiple agents in parallel to maximize efficiency:
+
+- **Context Agent** — Gathers and reads all context documents (FSD, changelogs, prior reviews, architecture docs)
+- **Coverage Agent** — Maps FSD requirements to source files and identifies which files belong to the phase under review
+- **Review Agents** — When the phase spans many files (5+), split them across 2-3 parallel review agents, each focusing on a subset of files. Each agent evaluates all review criteria (spec conformance, correctness, safety, etc.) for its assigned files.
+
+After all agents complete, synthesize their findings into the unified review output document.
+
+For small phases (under 5 files), a single agent is sufficient — no need to parallelize.
 
 ## Context Gathering
 
@@ -42,7 +56,13 @@ Determine the scope of the review:
 
 ## Review Execution
 
-Review **only** the files that belong to the identified phase. Evaluate against these criteria:
+Review **only** the files that belong to the identified phase.
+
+**For phases with 5+ source files:** Split the files across 2-3 parallel review agents. Each agent reviews its assigned files against all criteria below, then returns findings. Synthesize the results into the final review document.
+
+**For smaller phases:** Review all files directly without spawning agents.
+
+Evaluate against these criteria:
 
 ### 1. Spec Conformance
 - Does the implementation match what the FSD requires for this phase?
