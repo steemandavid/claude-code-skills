@@ -69,6 +69,48 @@ Write a plan that includes:
 
 Exit plan mode and wait for user approval before proceeding.
 
+## Step 3b: Save Implementation Plan
+
+After the plan is approved, persist it to an implementation plan file before writing any code. This creates a durable record of what was planned and serves as a reference during implementation and review.
+
+### File Naming
+Save the plan to the project root (or a `docs/` directory if one exists) using this naming convention:
+- `Implementation_Plan_Phase_{N}.md` — for numbered phases (e.g., `Implementation_Plan_Phase_3.md`)
+- `Implementation_Plan_{Feature}.md` — for feature-targeted runs (e.g., `Implementation_Plan_Authentication.md`)
+- If neither a phase number nor feature name is available, use the next sequential number based on existing plan files (e.g., check for `Implementation_Plan_Phase_*.md` and increment)
+
+### File Contents
+The implementation plan file should include all sections from the approved plan:
+
+```markdown
+# Implementation Plan: {Phase/Feature Name}
+
+**Date:** {current date}
+**Status:** Approved
+
+## Phase Summary
+{name, number, and description}
+
+## Requirements
+{what the spec says this phase must deliver, with section references}
+
+## Files to Create/Modify
+{specific file paths and what changes each needs}
+
+## Implementation Order
+{ordered list of tasks with dependencies}
+
+## Testing Strategy
+{how to verify the implementation}
+
+## Risks / Open Questions
+{anything ambiguous or needing clarification}
+```
+
+### When to Update the File
+- If the implementation deviates from the plan in a significant way, update the plan file to reflect the change and note the reason
+- After implementation is complete, update the status field to `Completed` and append a brief summary of deviations (if any)
+
 ## Step 4: Implement
 
 After the plan is approved, create tasks for each implementation step and execute them.

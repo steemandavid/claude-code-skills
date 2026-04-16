@@ -35,7 +35,12 @@ Before reviewing any code, **read these documents** in order:
    - Also check `~/claudecode/changelogs/` if it exists (user-level centralized changelogs)
    - `CHANGELOG.md`, `*changelog*.md`
 
-3. **Previous Review (if any)** — Search for:
+3. **Implementation Plan (if any)** — Search for:
+   - `Implementation_Plan_*.md` in the project root and `docs/` directory
+   - This is the plan written before implementation began — it captures what was approved, the intended file changes, implementation order, and testing strategy
+   - If found, use it as a key reference: compare what was planned vs. what was actually implemented
+
+4. **Previous Review (if any)** — Search for:
    - `*Code_Review*.md`, `*review*.md`
 
 4. **Architecture / Configuration** — Search for:
@@ -69,32 +74,39 @@ Evaluate against these criteria:
 - Are there requirements that are missing, partially implemented, or deviate from the spec?
 - Note the specific FSD section references for each finding
 
-### 2. Correctness
+### 2. Plan Conformance (if implementation plan exists)
+- Does the implementation follow what was approved in the implementation plan?
+- Were files created/modified as planned, or were there unexpected additions or omissions?
+- Was the implementation order followed, or were there deviations?
+- Did the actual testing match the planned testing strategy?
+- If the plan status is not `Completed`, note this and flag any undocumented deviations
+
+### 3. Correctness
 - Does the logic do what it's supposed to?
 - Are there edge cases, race conditions, or off-by-one errors?
 - Are state transitions valid and complete?
 
-### 3. Safety & Robustness
+### 4. Safety & Robustness
 - Are there code paths that could lead to hazardous states?
 - Are fail-safes and defaults robust?
 - Can the system recover gracefully from communication failures, sensor errors, or power issues?
 
-### 4. Concurrency & Real-Time
+### 5. Concurrency & Real-Time
 - Are tasks, threads, queues, mutexes, and interrupts used correctly?
 - Any deadlock, starvation, or priority inversion risks?
 - Are shared resources properly protected?
 
-### 5. Platform & Framework Best Practices
+### 6. Platform & Framework Best Practices
 - Proper use of the target platform's APIs (GPIO, ADC, wireless, storage, etc.)?
 - Correct initialization and teardown sequences?
 - Memory management — leaks, fragmentation, stack sizing?
 
-### 6. Error Handling
+### 7. Error Handling
 - Are error codes checked and propagated?
 - Can failures leave the system in an inconsistent state?
 - Are recovery paths realistic?
 
-### 7. Code Quality
+### 8. Code Quality
 - Clear naming and structure
 - Separation of concerns
 - No unnecessary complexity
@@ -126,12 +138,13 @@ Write the review as a Markdown file named `Phase{N}_Code_Review.md` in the proje
 
 1. [Coverage Analysis](#1-coverage-analysis)
 2. [Deviation Report](#2-deviation-report)
-3. [Edge Cases & Safety](#3-edge-cases--safety)
-4. [Concurrency & Platform Issues](#4-concurrency--platform-issues)
-5. [Error Handling](#5-error-handling)
-6. [Code Quality](#6-code-quality)
-7. [Summary](#7-summary)
-8. [Recommendation](#8-recommendation)
+3. [Plan vs. Implementation](#3-plan-vs-implementation)
+4. [Edge Cases & Safety](#4-edge-cases--safety)
+5. [Concurrency & Platform Issues](#5-concurrency--platform-issues)
+6. [Error Handling](#6-error-handling)
+7. [Code Quality](#7-code-quality)
+8. [Summary](#8-summary)
+9. [Recommendation](#9-recommendation)
 
 ---
 
@@ -151,34 +164,47 @@ Write the review as a Markdown file named `Phase{N}_Code_Review.md` in the proje
 
 {List each instance where implementation differs from the FSD, with severity: CRITICAL / MAJOR / MINOR}
 
-## 3. Edge Cases & Safety
+## 3. Plan vs. Implementation
+
+{If an implementation plan exists, compare planned vs. actual. If no plan exists, state "No implementation plan found — section skipped."}
+
+| Plan Item | Planned | Actual | Status |
+|-----------|---------|--------|--------|
+| Files created/modified | ... | ... | ... |
+| Implementation order | ... | ... | ... |
+| Testing strategy | ... | ... | ... |
+
+{Summarize any undocumented deviations and whether they seem justified}
+
+## 4. Edge Cases & Safety
 
 {Enumerate edge cases and safety concerns, with risk assessment}
 
-## 4. Concurrency & Platform Issues
+## 5. Concurrency & Platform Issues
 
 {Issues with threading, interrupts, hardware API usage}
 
-## 5. Error Handling
+## 6. Error Handling
 
 {Gaps in error handling and recovery}
 
-## 6. Code Quality
+## 7. Code Quality
 
 {Naming, structure, complexity observations — only substantive issues}
 
-## 7. Summary
+## 8. Summary
 
 | Category | Critical | Major | Minor | Info |
 |----------|----------|-------|-------|------|
 | Spec conformance | ... | ... | ... | ... |
+| Plan conformance | ... | ... | ... | ... |
 | Correctness | ... | ... | ... | ... |
 | Safety | ... | ... | ... | ... |
 | Concurrency | ... | ... | ... | ... |
 | Error handling | ... | ... | ... | ... |
 | Code quality | ... | ... | ... | ... |
 
-## 8. Recommendation
+## 9. Recommendation
 
 {Clear go/no-go recommendation for proceeding to the next phase, with conditions if applicable}
 ```
