@@ -9,9 +9,7 @@ Write a detailed summary of the work performed in this session to a new `.md` fi
 
 ## Changelog Location
 
-1. **Project-local** (preferred): `<project-root>/changelogs/` — use this if a `changelogs/` directory exists in the project root
-2. **User-level fallback**: `~/claudecode/changelogs/` — use this if no project-local changelogs directory exists
-3. If neither directory exists, create the project-local one: `mkdir -p <project-root>/changelogs/`
+Always write changelogs to `/home/john/claudecode/changelogs/`. Create the directory if it does not exist.
 
 ## Instructions
 
