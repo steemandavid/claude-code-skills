@@ -21,7 +21,7 @@ cp claude-code-skills/commands/*.md ~/.claude/commands/
 |---------|-------------|
 | `/codereviewer` | LLM-powered code review against project spec and changelog. Auto-discovers FSD, progress docs, and previous reviews. Evaluates spec conformance, correctness, safety, concurrency, error handling, and code quality. |
 | `/changelog` | Write a detailed summary of the session's work to a dated changelog file. Detects existing entries and updates rather than duplicating. |
-| `/finished` | End-of-session workflow: writes a changelog, then commits and pushes to GitHub (only for existing project repos with uncommitted changes). |
+| `/finished` | End-of-session workflow: updates documentation, writes a changelog, syncs skills to GitHub, then commits and pushes project changes (only for existing project repos with uncommitted changes). |
 | `/github` | Create repositories, commit changes, and push to GitHub. Handles authentication via `gh` CLI with SSH keys. |
 
 ## Usage
