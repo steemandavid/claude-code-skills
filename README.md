@@ -23,6 +23,7 @@ cp claude-code-skills/commands/*.md ~/.claude/commands/
 | `/changelog` | Write a detailed summary of the session's work to a dated changelog file. Detects existing entries and updates rather than duplicating. |
 | `/finished` | End-of-session workflow: updates documentation, writes a changelog, syncs skills to GitHub, then commits and pushes project changes (only for existing project repos with uncommitted changes). |
 | `/github` | Create repositories, commit changes, and push to GitHub. Handles authentication via `gh` CLI with SSH keys. |
+| `/projectcontext` | Initialize a fresh chat session with context about the current project. Auto-detects the project from the working directory, filters relevant changelogs out of the shared changelog folder, and reads the project's own `.md` docs to produce a concise briefing. |
 
 ## Usage
 
@@ -34,6 +35,8 @@ Skills are invoked as slash commands in Claude Code:
 /changelog                 # Write session changelog
 /finished                  # End-of-session wrap-up
 /github                    # GitHub operations
+/projectcontext            # Load project context at session start
+/projectcontext whisper    # Force a specific project
 ```
 
 ## Writing Custom Skills
