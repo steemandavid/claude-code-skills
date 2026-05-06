@@ -114,7 +114,7 @@ Evaluate against these criteria:
 
 ## Output Format
 
-Write the review as a Markdown file named `Phase{N}_Code_Review.md` in the project root (e.g., `Phase2_Code_Review.md`). Use this structure:
+Write the review as a Markdown file named `Code_Review_Phase{N}_{YYYYMMDD}_{HHMM}.md` in the project root (e.g., `Code_Review_Phase2_20260506_1814.md`). Determine the timestamp once at the start of the review with `date +%Y%m%d_%H%M`. A fresh file is written per invocation; never overwrite prior reviews. Use this structure:
 
 ```markdown
 # Phase {N} Code Review — {Phase Name}

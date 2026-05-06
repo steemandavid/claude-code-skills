@@ -147,6 +147,47 @@ After implementation is complete:
    - Any deviations from the spec (and why)
    - Any remaining work or follow-up items
 
+Then proceed to Step 6 to persist this report.
+
+## Step 6: Write Run Summary File
+
+After reporting results inline, persist a detailed summary to a Markdown file. Write it to `docs/` if that directory exists, otherwise to the project root.
+
+### Filename
+- `Coder_Summary_Phase{N}_{YYYYMMDD}_{HHMM}.md` for numbered phases (e.g., `Coder_Summary_Phase3_20260506_1814.md`)
+- `Coder_Summary_{Feature}_{YYYYMMDD}_{HHMM}.md` for feature-targeted runs (e.g., `Coder_Summary_Authentication_20260506_1814.md`)
+- Determine the timestamp once at the start of the run with `date +%Y%m%d_%H%M`. A fresh file is written per invocation; never overwrite prior summaries.
+
+### Contents
+The summary file should include:
+
+```markdown
+# Coder Run Summary: {Phase/Feature Name}
+
+**Date:** {YYYY-MM-DD HH:MM}
+**Phase / Feature:** {name and number}
+**Plan File:** {path to Implementation_Plan_*.md, if any}
+
+## What Was Implemented
+{bulleted list of features / behaviours delivered this run}
+
+## Files Created / Modified
+| File | Change |
+|------|--------|
+| ... | ... |
+
+## Test Results
+{full suite output summary, lint/type-check status}
+
+## Deviations from the Plan
+{anything that differs from the approved Implementation_Plan_*.md, with reasons. Write "None" if there were none.}
+
+## Outstanding Work / Follow-ups
+{anything not finished, deferred, or surfaced as new work during implementation}
+```
+
+This file is the durable record of a single coder invocation — it complements (does not replace) `Implementation_Plan_*.md`, which remains the canonical evolving plan.
+
 ## Handling Missing Documents
 
 If the project has no specification document:
