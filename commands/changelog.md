@@ -9,7 +9,22 @@ Write a detailed summary of the work performed in this session to a new `.md` fi
 
 ## Changelog Location
 
-Always write changelogs to `/home/john/claudecode/changelogs/`. Create the directory if it does not exist.
+Changelogs are split into two categories:
+
+1. **Machine-local changelogs** — for infrastructure, sysadmin, and machine-specific work:
+   - Path: `/home/john/claudecode/changelogs/<hostname>/` where `<hostname>` is the output of `hostname`
+   - These are NOT synced between machines (each machine has its own directory)
+
+2. **Project changelogs** — for project-specific development work:
+   - Path: Inside the project directory, e.g. `/home/john/claudecode/projects/<project>/changelog.md`
+   - These ARE synced between machines via Syncthing
+
+**Which one to use:**
+- If working on a specific project (code in `~/claudecode/projects/<project>/`), write to that project's `changelog.md`
+- If working on machine infrastructure, system setup, or cross-cutting tasks, write to the machine-local directory
+- When in doubt, write to the machine-local directory
+
+Create directories if they do not exist.
 
 ## Instructions
 
