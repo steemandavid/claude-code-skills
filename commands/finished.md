@@ -27,6 +27,8 @@ Update all project documentation to reflect changes made during this session.
 
 Run the `/changelog` skill to write or update the session changelog.
 
+**Always run this step**, regardless of whether the session was project work, system administration, infrastructure setup, or any other type of task. The changelog skill already handles both project changelogs and machine-local changelogs — do not skip it.
+
 ### Step 3: Sync Skills to GitHub
 
 Check if any files in `~/.claude/commands/` were modified during this session by comparing them to the `claude-code-skills` repo at `~/claude-code-skills/commands/`.
@@ -51,8 +53,7 @@ After the changelog is written, determine if this is a project that should be co
 **Skip to Step 5** if ANY of these are true:
 - No valid git repository exists
 - Git repository is corrupted (e.g., `git status` fails with errors)
-- No GitHub remote is configured (this indicates a non-project directory or system administration work)
-- The session was for system tasks (VM migrations, backup setup, server configuration, etc.)
+- No GitHub remote is configured (this indicates a non-project directory)
 
 **Only proceed to Step 5** if:
 - Valid git repository exists AND
