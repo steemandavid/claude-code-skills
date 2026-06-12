@@ -182,19 +182,34 @@ If images don't exist yet, leave placeholder comments:
 
 ## Step 7: Preview and Iterate
 
-Offer to preview the post locally:
+**After every blog post write or modification, you MUST automatically start a Hugo preview server so the user can review the result. Do NOT just offer — do it.**
 
-```bash
-cd /home/john/claudecode/projects/website-steeman.be
-hugo server -D --bind 0.0.0.0 --baseURL http://192.168.1.165
-# Preview at: http://192.168.1.165:1313/
-```
+1. Check if a Hugo server is already running:
+   ```bash
+   pgrep -f "hugo server" > /dev/null 2>&1 && echo "RUNNING" || echo "NOT_RUNNING"
+   ```
+
+2. If not already running, start it in the background:
+   ```bash
+   cd /home/john/claudecode/projects/website-steeman.be
+   hugo server -D --bind 0.0.0.0 --baseURL http://192.168.1.165 &
+   ```
+   Wait a few seconds for it to start, then verify it's up.
+
+3. **Always display the preview URL prominently** after the server is confirmed running:
+   ```
+   🌐 Preview: http://192.168.1.165:1313/posts/<post-slug>/
+   ```
+
+4. Also show the direct link to the specific post so the user can copy it into a browser.
 
 After the user reviews, iterate on the content. Common adjustments:
 - Fixing image placement and sizing
 - Adjusting section flow
 - Adding or removing technical detail
 - Correcting links
+
+**After each edit iteration, repeat this preview step** — confirm the server is running and show the preview URL again.
 
 ## Step 8: Publish
 
