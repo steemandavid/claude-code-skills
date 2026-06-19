@@ -24,6 +24,7 @@ cp claude-code-skills/commands/*.md ~/.claude/commands/
 | `/finished` | End-of-session workflow: updates documentation, writes a changelog, syncs skills to GitHub, then commits and pushes project changes (only for existing project repos with uncommitted changes). |
 | `/github` | Create repositories, commit changes, and push to GitHub. Handles authentication via `gh` CLI with SSH keys. |
 | `/projectcontext` | Initialize a fresh chat session with context about the current project. Auto-detects the project from the working directory, filters relevant changelogs out of the shared changelog folder, and reads the project's own `.md` docs to produce a concise briefing. |
+| `/ratelimitreset` | Reorient and resume interrupted work after an API rate-limit reset. Reads an automatic checkpoint (`~/.claude/checkpoint.json`), then the task list, `git status`, and recent conversation to pick up exactly where things left off. |
 
 ## Usage
 
