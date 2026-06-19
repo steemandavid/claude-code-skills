@@ -71,3 +71,13 @@ After the changelog is written, determine if this is a project that should be co
 4. Report what was committed and pushed.
 
 **Note:** Never offer to create a new GitHub repository. This skill only handles existing project repos.
+
+## Completion
+
+When the workflow is complete, output exactly this single line as the final line of your response:
+
+```
+=== /finished skill completed ===
+```
+
+This line is mandatory and must always be emitted, regardless of which steps were run or skipped. Output nothing else after it.
