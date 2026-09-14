@@ -56,7 +56,18 @@ The backend has ~45K usable context. Therefore:
    status: proposed        # auto-added YYYY-MM-DD, review me
    ```
    Never rename or delete existing entries; only append.
-7. **Write the two files** (templates below) into `reports/`.
+7. **Write the two files** (templates below) into `reports/`, then **publish
+   them to the fileshare** so they are readable from the work PC at
+   `\\192.168.1.165\fileshare\outlook\reports\`:
+   ```bash
+   cp reports/todo-<stamp>.md reports/status-<stamp>.md /storage/fileshare/outlook/reports/
+   cp reports/todo-<stamp>.md   /storage/fileshare/outlook/reports/todo-latest.md
+   cp reports/status-<stamp>.md /storage/fileshare/outlook/reports/status-latest.md
+   chmod 664 /storage/fileshare/outlook/reports/*.md
+   ```
+   The dated copies build up a history; `todo-latest.md` / `status-latest.md`
+   always point at the newest run, so David can keep one file open on the
+   laptop. Mention the UNC path in the terminal summary.
 8. **Report in the terminal in ≤10 lines:** counts, the Today list, the chase
    list, proposed project additions, staleness warning if any. No essay.
 
@@ -157,3 +168,4 @@ copy stays readable until the new one lands.
 | `chase-ignore.md` | threads never to flag as unanswered |
 | `digest.py` | full body of one message: `digest.py "<folder>" <idx>` |
 | `skill-spec-mailbox-update-newera.md` | design rationale |
+| `reports/` | generated files, mirrored to `/storage/fileshare/outlook/reports/` (share `fileshare`, writable, user `john`) |
