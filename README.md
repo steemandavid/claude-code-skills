@@ -13,6 +13,9 @@ cp claude-code-skills/commands/changelog.md ~/.claude/commands/
 
 # Or copy all of them
 cp claude-code-skills/commands/*.md ~/.claude/commands/
+
+# Directory-form skills live under skills/ and keep their folder
+cp -r claude-code-skills/skills/mailbox-update-newera ~/.claude/skills/
 ```
 
 ## Available Skills
@@ -24,6 +27,7 @@ cp claude-code-skills/commands/*.md ~/.claude/commands/
 | `/finished` | End-of-session workflow: updates documentation, writes a changelog, syncs skills to GitHub, then commits and pushes project changes (only for existing project repos with uncommitted changes). |
 | `/github` | Create repositories, commit changes, and push to GitHub. Handles authentication via `gh` CLI with SSH keys. |
 | `/projectcontext` | Initialize a fresh chat session with context about the current project. Auto-detects the project from the working directory, filters relevant changelogs out of the shared changelog folder, and reads the project's own `.md` docs to produce a concise briefing. |
+| `/mailbox-update-newera` | Refresh a to-do list and per-project status from a synced Outlook OST: new mail since the last run, sent mail with no reply past its deadline, unsent drafts, tasks grouped per project. Needs the companion `scan.py` in the mailbox project. |
 | `/ratelimitreset` | Reorient and resume interrupted work after an API rate-limit reset. Reads an automatic checkpoint (`~/.claude/checkpoint.json`), then the task list, `git status`, and recent conversation to pick up exactly where things left off. |
 
 ## Usage
